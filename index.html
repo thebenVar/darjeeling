@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darjeeling Trip Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f0f4f8; /* Lighter blue-grey background */
+            font-family: 'Inter', sans-serif; /* Clean sans-serif font */
+        }
+        /* Style for accordion content (hidden by default) */
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+        }
+        .accordion-content.open {
+            display: block;
+            max-height: 1500px; /* Increased max-height */
+        }
+        /* Style for accordion button arrow */
+        .accordion-button .arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-button.open .arrow {
+            transform: rotate(180deg);
+        }
+        /* Style for the decorative text placeholders */
+        .graphic-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            font-weight: 500; /* Medium weight */
+            border-radius: 0.375rem; /* rounded-md */
+            width: 100%;
+            height: 8rem; /* h-32 */
+            object-fit: cover;
+            margin-bottom: 0.5rem; /* mb-2 */
+            padding: 1rem; /* p-4 */
+        }
+        /* Calendar Icon Styling */
+        .calendar-icon {
+            width: 1.5rem; /* Adjust size */
+            height: 1.5rem; /* Adjust size */
+            margin-right: 0.25rem;
+            color: #4a5568; /* gray-700 */
+        }
+        .calendar-icon-group span {
+             margin-right: 0.5rem; /* Space between icons */
+        }
+        /* Styling for description and review text */
+        .attraction-desc {
+            font-size: 0.8rem; /* Smaller font size */
+            color: #4a5568; /* gray-700 */
+            margin-left: 1rem; /* Indent description */
+            margin-top: 0.1rem;
+            margin-bottom: 0.4rem;
+        }
+        .attraction-review {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #718096; /* gray-500 */
+            margin-left: 1rem;
+        }
+
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4 md:max-w-2xl">
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 p-5 text-white rounded-t-lg">
+            <h1 class="text-3xl font-bold text-center mb-1">Darjeeling & Ghoom Trip</h1>
+            <p class="text-md text-center text-blue-100">May 16th - May 20th, 2025</p>
+        </header>
+
+        <section class="p-4 border-b border-gray-200 bg-indigo-50">
+            <h2 class="text-lg font-semibold text-indigo-800 mb-3">Trip Summary</h2>
+            <div class="text-sm text-gray-700 space-y-2">
+                <p><i class="fas fa-users mr-2 text-indigo-500"></i>Travellers: 2 Adults</p>
+                <p><i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>Base: Tigerhill Homestay, Jorebunglow (near Ghoom)</p>
+                <p><i class="fas fa-plane mr-2 text-indigo-500"></i>Flights: IndiGo (COK <-> IXB)</p>
+                <p><i class="fas fa-car mr-2 text-indigo-500"></i>Transport: Hired Car w/ Driver (5 Days)</p>
+                <p><i class="fas fa-ticket-alt mr-2 text-indigo-500"></i>Key Booking: Toy Train Joy Ride (May 17th, 1:25 PM)</p>
+                <p><i class="fas fa-wallet mr-2 text-indigo-500"></i>Est. Budget (Excl. Flights): ~₹ 39,700</p>
+            </div>
+        </section>
+
+        <section class="p-4 border-b border-gray-200">
+             <h2 class="text-lg font-semibold text-indigo-800 mb-3">Daily Overview</h2>
+             <div class="space-y-3">
+                 <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 1 <br>May 16</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                         <span title="Flight Arrival"><i class="fas fa-plane-arrival calendar-icon"></i></span>
+                         <span title="Car Transfer"><i class="fas fa-car-side calendar-icon"></i></span>
+                         <span title="Hotel Check-in"><i class="fas fa-hotel calendar-icon"></i></span>
+                         <span title="Local Sightseeing"><i class="fas fa-binoculars calendar-icon"></i></span>
+                         <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                     </div>
+                 </div>
+                 <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 2 <br>May 17</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                         <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
+                         <span title="Sightseeing (HMI/Zoo)"><i class="fas fa-binoculars calendar-icon"></i></span>
+                         <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Toy Train"><i class="fas fa-train calendar-icon"></i></span>
+                         <span title="Shopping/Mall Road"><i class="fas fa-shopping-bag calendar-icon"></i></span>
+                         <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
+                     </div>
+                 </div>
+                 <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 3 <br>May 18</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                         <span title="Early Car Travel (Tiger Hill)"><i class="fas fa-car-side calendar-icon"></i></span>
+                         <span title="Sunrise View"><i class="fas fa-mountain-sun calendar-icon"></i></span>
+                         <span title="Breakfast"><i class="fas fa-mug-hot calendar-icon"></i></span>
+                         <span title="Sightseeing (Pagoda/Tea Estate)"><i class="fas fa-peace calendar-icon"></i><i class="fas fa-leaf calendar-icon"></i></span>
+                         <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
+                     </div>
+                 </div>
+                 <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 4 <br>May 19</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                          <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
+                          <span title="Sightseeing (Rock Garden)"><i class="fas fa-water calendar-icon"></i></span>
+                          <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
+                          <span title="Shopping"><i class="fas fa-shopping-cart calendar-icon"></i></span>
+                          <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                          <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
+                     </div>
+                 </div>
+                  <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 5 <br>May 20</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                          <span title="Early Car Departure"><i class="fas fa-car-side calendar-icon"></i></span>
+                          <span title="Airport Check-in"><i class="fas fa-plane-departure calendar-icon"></i></span>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <main class="p-4 space-y-4">
+
+            <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
+                <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 1: Friday, May 16th</h2>
+                <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Arrival & Ghoom Exploration</h3>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-plane-arrival mr-1"></i> ~11:05 AM - 3:00 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Arrival at Bagdogra (IXB) & Transfer to Ghoom</h4>
+                    <div class="graphic-placeholder bg-gradient-to-br from-green-200 via-blue-200 to-purple-300 text-gray-700">
+                        Scenic Drive Up the Hills
+                    </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Meet your pre-booked driver at the airport arrivals.</li>
+                            <li>The drive typically takes 3-4 hours. Be patient, enjoy the views!</li>
+                            <li>Road conditions and traffic can affect travel time.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-hotel mr-1"></i> ~3:00 PM - 4:00 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Hotel Check-in (Tigerhill Homestay) & Refresh</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Check into Tigerhill Homestay, Jorebunglow.</li>
+                            <li>Take some time to freshen up and perhaps have a late lunch or snack.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-walking mr-1"></i> ~4:00 PM - 6:00 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Explore Ghoom Locally</h4>
+                     <div class="graphic-placeholder bg-gradient-to-tr from-yellow-200 via-red-200 to-pink-300 text-red-800">
+                         Ghoom Monastery Facade
+                     </div>
+                     <div class="graphic-placeholder bg-gradient-to-bl from-cyan-200 to-blue-300 text-blue-800">
+                         Batasia Loop Viewpoint
+                     </div>
+
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Ghoom Monastery (Yiga Choeling):</strong>
+                                <p class="attraction-desc">Historic monastery known for its large Maitreya Buddha statue and collection of scriptures.</p>
+                                <p class="attraction-review">Review: Generally positive reviews, appreciated for its spiritual ambiance and historical significance.</p>
+                            </li>
+                            <li><strong>Ghoom Railway Station (UNESCO):</strong>
+                                <p class="attraction-desc">Highest railway station in India, part of the DHR World Heritage site.</p>
+                                <p class="attraction-review">Review: Highly rated for its heritage value and connection to the Toy Train.</p>
+                            </li>
+                            <li><strong>Batasia Loop & War Memorial:</strong>
+                                <p class="attraction-desc">A scenic railway loop with panoramic views and a memorial honoring Gorkha soldiers.</p>
+                                <p class="attraction-review">Review: Very popular for photography and views (weather dependent); memorial adds poignancy.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Dress modestly for the monastery.</li>
+                            <li>Walk slowly to acclimatize.</li>
+                            <li>Check views at Batasia Loop.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                             <li>Observe prayer rituals.</li>
+                             <li>Take photos.</li>
+                             <li>Reflect at the War Memorial.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-utensils mr-1"></i> Evening</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Dinner & Rest</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                             <li>Find a local restaurant in Ghoom/Jorebunglow.</li>
+                             <li>Get adequate rest for acclimatization.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+             <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
+                <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 2: Saturday, May 17th</h2>
+                <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Darjeeling Town & Toy Train Fun!</h3>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-binoculars mr-1"></i> ~9:00 AM - 12:30 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">HMI & Zoo Visit</h4>
+                    <div class="graphic-placeholder bg-gradient-to-r from-red-200 via-orange-200 to-yellow-200 text-orange-800">
+                        Red Panda / Snow Leopard at Zoo
+                    </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Himalayan Mountaineering Institute (HMI):</strong>
+                                <p class="attraction-desc">Prestigious institute with a museum detailing mountaineering history, Everest expeditions, and equipment.</p>
+                                <p class="attraction-review">Review: Highly rated, especially for those interested in mountaineering and Himalayan history.</p>
+                            </li>
+                            <li><strong>Padmaja Naidu Himalayan Zoological Park (Zoo):</strong>
+                                <p class="attraction-desc">Specializes in high-altitude animals; known for successful Red Panda and Snow Leopard conservation programs.</p>
+                                <p class="attraction-review">Review: Very popular, considered one of the best zoos in India for its focus on Himalayan fauna and conservation.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Allow 3+ hours for both (same complex).</li>
+                            <li>Wear comfortable shoes.</li>
+                            <li>Typically closed Thursdays (confirm).</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Learn mountaineering history.</li>
+                            <li>Spot Red Pandas, Snow Leopards.</li>
+                            <li>Support conservation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-utensils mr-1"></i> ~12:30 PM - 1:15 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Lunch in Darjeeling</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Choose restaurant near station/Mall Road.</li>
+                            <li>Variety of cuisines available.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-train mr-1"></i> ~1:15 PM - 3:30 PM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Toy Train Joy Ride (Pre-Booked 1:25 PM)</h4>
+                     <div class="graphic-placeholder bg-gradient-to-br from-gray-300 via-slate-300 to-stone-400 text-gray-800">
+                         Darjeeling Toy Train
+                     </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Darjeeling Himalayan Railway (Toy Train):</strong>
+                                <p class="attraction-desc">Iconic UNESCO World Heritage narrow-gauge railway offering scenic rides.</p>
+                                <p class="attraction-review">Review: Highly recommended for the unique heritage experience and views, though can be slow.</p>
+                            </li>
+                            <li><strong>Batasia Loop stop:</strong>
+                                 <p class="attraction-desc">Brief stop on the Joy Ride for photos at the scenic loop and memorial.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Be at Darjeeling station by 1:15 PM.</li>
+                            <li>Have booking details.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Enjoy the ride & views!</li>
+                            <li>Photography.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-bag mr-1"></i> ~3:30 PM onwards</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Explore Darjeeling Mall (Chowrasta)</h4>
+                     <div class="graphic-placeholder bg-gradient-to-tl from-purple-200 via-pink-200 to-rose-300 text-purple-800">
+                         Darjeeling Chowrasta Scene
+                     </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Darjeeling Mall (Chowrasta):</strong>
+                                <p class="attraction-desc">The main public square and promenade, lined with shops, cafes, and benches. The social hub of Darjeeling.</p>
+                                <p class="attraction-review">Review: Essential Darjeeling experience; great for people-watching, atmosphere, and evening strolls.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Ideal for walking (vehicle restricted).</li>
+                            <li>Can be busy.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Stroll, browse shops.</li>
+                            <li>**Try Momos!**</li>
+                            <li>Enjoy tea/coffee.</li>
+                            <li>People-watch.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-utensils mr-1"></i> Evening</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Dinner</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Options in Darjeeling or return to Ghoom/Jorebunglow.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
+                 <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 3: Sunday, May 18th</h2>
+                 <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Sunrise Views & Spiritual Serenity</h3>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-mountain-sun mr-1"></i> ~3:45 AM - 7:00 AM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Tiger Hill Sunrise Attempt (Weather Dependent)</h4>
+                    <div class="graphic-placeholder bg-gradient-to-r from-orange-300 via-red-400 to-pink-500 text-white">
+                        Kanchenjunga Sunrise View
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Tiger Hill Viewpoint:</strong>
+                                <p class="attraction-desc">Famous for panoramic sunrise views over Kanchenjunga and other Himalayan peaks.</p>
+                                <p class="attraction-review">Review: Absolutely stunning when clear, but highly weather-dependent and often very crowded.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Highly weather dependent!</li>
+                            <li>Leave Ghoom/Jorebunglow ~4:00 AM.</li>
+                            <li>**Dress very warmly!**</li>
+                            <li>Expect crowds, potential fees.</li>
+                            <li>Skip if weather is bad.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Find good viewing spot.</li>
+                            <li>Photography.</li>
+                            <li>Sip hot tea.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-mug-hot mr-1"></i> Morning</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Breakfast & Relax</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Return to hotel after sunrise/wake up.</li>
+                            <li>Breakfast included at Tigerhill Homestay.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-peace mr-1"></i> Late Morning / Afternoon</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Japanese Peace Pagoda & Temple Visit</h4>
+                     <div class="graphic-placeholder bg-gradient-to-b from-white via-gray-100 to-slate-200 text-gray-700 border border-gray-300">
+                         Japanese Peace Pagoda
+                     </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Japanese Peace Pagoda:</strong>
+                                <p class="attraction-desc">A large white stupa built to promote world peace, offering serene atmosphere and views.</p>
+                                <p class="attraction-review">Review: Highly rated for its peaceful ambiance, architectural beauty, and panoramic views (weather permitting).</p>
+                            </li>
+                            <li><strong>Nipponzan Myohoji Temple:</strong>
+                                <p class="attraction-desc">Adjacent traditional Japanese Buddhist temple.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Maintain quiet, respectful atmosphere.</li>
+                            <li>Remove shoes at temple.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Walk around the stupa.</li>
+                            <li>Observe carvings.</li>
+                            <li>Enjoy tranquility and views.</li>
+                            <li>Attend prayer session (check timings).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-leaf mr-1"></i> Afternoon</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Tea Estate Visit & Tibetan Refugee Centre</h4>
+                     <div class="graphic-placeholder bg-gradient-to-r from-lime-200 via-green-300 to-emerald-400 text-green-900">
+                         Darjeeling Tea Gardens
+                     </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Tea Estate (e.g., Happy Valley):</strong>
+                                <p class="attraction-desc">Visit a working tea garden to see tea bushes and learn about the famous Darjeeling tea production.</p>
+                                <p class="attraction-review">Review: Generally well-regarded; experience varies by estate and whether factory tours/tastings are available.</p>
+                            </li>
+                            <li><strong>Tibetan Refugee Self Help Centre:</strong>
+                                <p class="attraction-desc">Supports the Tibetan community; watch artisans create carpets, woodcrafts, etc., and purchase items.</p>
+                                <p class="attraction-review">Review: Valued for its cultural significance and opportunity to buy authentic crafts, though workshop access may vary.</p>
+                            </li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Check tea factory tour timings.</li>
+                            <li>**CRITICAL: Tibetan Centre likely CLOSED Sunday - Verify & Swap if needed!**</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Take tea tour/tasting.</li>
+                            <li>Buy fresh tea.</li>
+                            <li>Support Tibetan artisans.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-utensils mr-1"></i> Evening</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Relax / Dinner</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Dinner in Ghoom/Jorebunglow or Darjeeling.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
+                 <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 4: Monday, May 19th</h2>
+                 <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Nature Excursion & Last Souvenirs</h3>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-water mr-1"></i> Morning</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Rock Garden & Ganga Maya Park OR Missed Spots</h4>
+                    <div class="graphic-placeholder bg-gradient-to-br from-teal-200 via-cyan-300 to-sky-400 text-teal-800">
+                         Rock Garden Waterfall
+                     </div>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                         <ul>
+                            <li><strong>Rock Garden:</strong>
+                                <p class="attraction-desc">Multi-level terraced garden built around a natural waterfall, involving a steep drive down.</p>
+                                <p class="attraction-review">Review: Appreciated for its unique construction and scenic setting, though requires some walking.</p>
+                            </li>
+                            <li><strong>Ganga Maya Park:</strong>
+                                <p class="attraction-desc">Located below Rock Garden, featuring flower gardens, a lake (boating sometimes available), and occasional folk dances.</p>
+                                <p class="attraction-review">Review: Pleasant addition to Rock Garden visit, offers a more relaxed environment.</p>
+                            </li>
+                            <li><strong>Alternative:** Cover missed spots (HMI/Zoo, Tea Estate, Peace Pagoda, Tibetan Centre if open).</li>
+                         </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Steep drive down.</li>
+                            <li>Involves walking/steps.</li>
+                            <li>Allow 2-3 hrs including travel.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Enjoy nature, photography.</li>
+                            <li>Relax by waterfall/lake.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-cart mr-1"></i> Afternoon</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Lunch & Last-Minute Shopping</h4>
+                     <div class="graphic-placeholder bg-gradient-to-tl from-amber-200 via-yellow-300 to-orange-300 text-amber-900">
+                         Darjeeling Souvenirs / Tea Shop
+                     </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Visit Darjeeling town shops.</li>
+                            <li>Good buys: Tea, woollens, handicrafts.</li>
+                            <li>Compare prices, bargain politely.</li>
+                        </ul>
+                    </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Suggested Activities</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
+                    <div class="accordion-content text-sm text-gray-600">
+                        <ul>
+                            <li>Try different lunch spot.</li>
+                            <li>Buy gifts and mementos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-suitcase-rolling mr-1"></i> Evening</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Farewell Dinner & Packing</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Enjoy final dinner.</li>
+                            <li>Pack bags for early departure.</li>
+                            <li>Confirm driver pickup time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
+                 <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 5: Tuesday, May 20th</h2>
+                 <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Departure</h3>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-car-side mr-1"></i> ~5:00 AM - 6:00 AM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Wake Up & Depart from Ghoom/Jorebunglow</h4>
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Wake up very early (~5:00 AM).</li>
+                            <li>Be ready with luggage.</li>
+                            <li>**Depart by 6:00 AM latest!**</li>
+                            <li>Ensure driver is ready.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-road mr-1"></i> ~6:00 AM - 9:40 AM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Travel to Bagdogra Airport (IXB)</h4>
+                     <div class="graphic-placeholder bg-gradient-to-r from-slate-300 via-gray-300 to-zinc-400 text-gray-800">
+                         Bagdogra Airport Exterior
+                     </div>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Allow 3.5-4 hours travel time minimum.</li>
+                            <li>Starting early avoids peak traffic.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="activity-card bg-white rounded-lg p-3 border border-gray-100 shadow-sm">
+                     <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-500"><i class="fas fa-plane-departure mr-1"></i> ~9:40 AM</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Arrive at IXB & Check-in</h4>
+                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <span>Guidelines</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content mt-2 text-sm text-gray-600">
+                        <ul>
+                            <li>Arrive 2 hours before 11:40 AM flight.</li>
+                            <li>Proceed for check-in/bag drop & security.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="p-4 text-center text-sm text-gray-500 border-t border-gray-200 rounded-b-lg">
+            Have a wonderful and safe trip!
+        </footer>
+
+    </div>
+
+    <script>
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const arrow = button.querySelector('.arrow'); // Assumes Font Awesome icon element has class 'arrow'
+            const isOpen = content.classList.contains('open');
+
+            // Close all other open accordions within the same activity card
+            const parentCard = button.closest('.activity-card');
+             if (parentCard) {
+                 parentCard.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                     if (openContent !== content) {
+                         openContent.classList.remove('open');
+                         openContent.style.maxHeight = null;
+                         const otherButton = openContent.previousElementSibling;
+                         if (otherButton && otherButton.classList.contains('accordion-button')) {
+                             otherButton.classList.remove('open');
+                             const otherArrow = otherButton.querySelector('.arrow');
+                              if(otherArrow) {
+                                  otherArrow.classList.remove('fa-chevron-up');
+                                  otherArrow.classList.add('fa-chevron-down');
+                              }
+                         }
+                     }
+                 });
+             }
+
+
+            content.classList.toggle('open');
+            button.classList.toggle('open');
+
+            if (content.classList.contains('open')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                 if(arrow) {
+                     arrow.classList.remove('fa-chevron-down');
+                     arrow.classList.add('fa-chevron-up');
+                 }
+            } else {
+                content.style.maxHeight = null;
+                 if(arrow) {
+                     arrow.classList.remove('fa-chevron-up');
+                     arrow.classList.add('fa-chevron-down');
+                 }
+            }
+        }
+    </script>
+
+</body>
+</html>
