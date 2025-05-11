@@ -46,6 +46,8 @@
         }
         .calendar-icon-group span {
              margin-right: 0.5rem; /* Space between icons */
+             display: inline-flex; /* Helps with alignment if needed */
+             align-items: center;
         }
         /* Styling for description and review text */
         .attraction-desc {
@@ -92,51 +94,62 @@
              <div class="space-y-3">
                  <div class="flex items-start space-x-3">
                      <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 1 <br>May 16</div>
-                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
                          <span title="Flight Arrival"><i class="fas fa-plane-arrival calendar-icon"></i></span>
                          <span title="Car Transfer"><i class="fas fa-car-side calendar-icon"></i></span>
                          <span title="Hotel Check-in"><i class="fas fa-hotel calendar-icon"></i></span>
-                         <span title="Local Sightseeing"><i class="fas fa-binoculars calendar-icon"></i></span>
-                         <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
-                     </div>
-                 </div>
-                 <div class="flex items-start space-x-3">
-                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 2 <br>May 17</div>
-                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
-                         <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
-                         <span title="Sightseeing (HMI/Zoo)"><i class="fas fa-binoculars calendar-icon"></i></span>
-                         <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
-                         <span title="Toy Train"><i class="fas fa-train calendar-icon"></i></span>
-                         <span title="Shopping/Mall Road"><i class="fas fa-shopping-bag calendar-icon"></i></span>
+                         <span title="Lunch/Snack"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Ghoom Monastery"><i class="fas fa-place-of-worship calendar-icon"></i></span>
+                         <span title="Ghoom Station"><i class="fas fa-train-subway calendar-icon"></i></span>
+                         <span title="Batasia Loop"><i class="fas fa-sync-alt calendar-icon"></i></span>
                          <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
                          <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
                      </div>
                  </div>
                  <div class="flex items-start space-x-3">
-                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 3 <br>May 18</div>
-                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
-                         <span title="Early Car Travel (Tiger Hill)"><i class="fas fa-car-side calendar-icon"></i></span>
-                         <span title="Sunrise View"><i class="fas fa-mountain-sun calendar-icon"></i></span>
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 2 <br>May 17</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
                          <span title="Breakfast"><i class="fas fa-mug-hot calendar-icon"></i></span>
-                         <span title="Sightseeing (Pagoda/Tea Estate)"><i class="fas fa-peace calendar-icon"></i><i class="fas fa-leaf calendar-icon"></i></span>
+                         <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
+                         <span title="HMI & Zoo"><i class="fas fa-paw calendar-icon"></i><i class="fas fa-mountain calendar-icon"></i></span>
+                         <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Toy Train"><i class="fas fa-train calendar-icon"></i></span>
+                         <span title="Chowrasta/Mall Road"><i class="fas fa-walking calendar-icon"></i></span>
+                         <span title="Shopping"><i class="fas fa-shopping-bag calendar-icon"></i></span>
+                         <span title="Momos"><i class="fas fa-utensils-alt calendar-icon"></i></span> <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                         <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
+                     </div>
+                 </div>
+                 <div class="flex items-start space-x-3">
+                     <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 3 <br>May 18</div>
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
+                         <span title="Early Car (Tiger Hill)"><i class="fas fa-car-side calendar-icon"></i></span>
+                         <span title="Tiger Hill Sunrise"><i class="fas fa-mountain calendar-icon"></i></span>
+                         <span title="Breakfast"><i class="fas fa-mug-hot calendar-icon"></i></span>
+                         <span title="Japanese Peace Pagoda"><i class="fas fa-peace calendar-icon"></i></span>
+                         <span title="Tea Estate Visit"><i class="fas fa-leaf calendar-icon"></i></span>
+                         <span title="Tibetan Refugee Centre"><i class="fas fa-hands-helping calendar-icon"></i></span>
                          <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
                          <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
                      </div>
                  </div>
                  <div class="flex items-start space-x-3">
                      <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 4 <br>May 19</div>
-                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
+                          <span title="Breakfast"><i class="fas fa-mug-hot calendar-icon"></i></span>
                           <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
-                          <span title="Sightseeing (Rock Garden)"><i class="fas fa-water calendar-icon"></i></span>
+                          <span title="Rock Garden & Ganga Maya Park"><i class="fas fa-water calendar-icon"></i></span>
                           <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
                           <span title="Shopping"><i class="fas fa-shopping-cart calendar-icon"></i></span>
                           <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
+                          <span title="Packing"><i class="fas fa-suitcase-rolling calendar-icon"></i></span>
                           <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
                      </div>
                  </div>
                   <div class="flex items-start space-x-3">
                      <div class="bg-blue-100 text-blue-800 font-semibold rounded px-2 py-1 text-sm">Day 5 <br>May 20</div>
-                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group">
+                     <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
+                          <span title="Early Wake Up"><i class="fas fa-clock calendar-icon"></i></span>
                           <span title="Early Car Departure"><i class="fas fa-car-side calendar-icon"></i></span>
                           <span title="Airport Check-in"><i class="fas fa-plane-departure calendar-icon"></i></span>
                      </div>
