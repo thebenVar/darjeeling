@@ -30,20 +30,12 @@
         .accordion-button.open .arrow {
             transform: rotate(180deg);
         }
-        /* Style for the decorative text placeholders */
-        .graphic-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-style: italic;
-            font-weight: 500; /* Medium weight */
-            border-radius: 0.375rem; /* rounded-md */
-            width: 100%;
-            height: 8rem; /* h-32 */
-            object-fit: cover;
-            margin-bottom: 0.5rem; /* mb-2 */
-            padding: 1rem; /* p-4 */
+        /* Ensure images don't exceed container width and have some margin */
+        .activity-card img {
+             max-width: 100%;
+             height: auto;
+             margin-top: 0.5rem; /* Add some top margin */
+             margin-bottom: 0.5rem; /* Add some bottom margin */
         }
         /* Calendar Icon Styling */
         .calendar-icon {
@@ -86,12 +78,12 @@
         <section class="p-4 border-b border-gray-200 bg-indigo-50">
             <h2 class="text-lg font-semibold text-indigo-800 mb-3">Trip Summary</h2>
             <div class="text-sm text-gray-700 space-y-2">
-                <p><i class="fas fa-users mr-2 text-indigo-500"></i>Travellers: 2 Adults</p>
-                <p><i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>Base: Tigerhill Homestay, Jorebunglow (near Ghoom)</p>
-                <p><i class="fas fa-plane mr-2 text-indigo-500"></i>Flights: IndiGo (COK <-> IXB)</p>
-                <p><i class="fas fa-car mr-2 text-indigo-500"></i>Transport: Hired Car w/ Driver (5 Days)</p>
-                <p><i class="fas fa-ticket-alt mr-2 text-indigo-500"></i>Key Booking: Toy Train Joy Ride (May 17th, 1:25 PM)</p>
-                <p><i class="fas fa-wallet mr-2 text-indigo-500"></i>Est. Budget (Excl. Flights): ~₹ 39,700</p>
+                <p><i class="fas fa-users mr-2 text-indigo-500 w-4 text-center"></i>Travellers: 2 Adults</p>
+                <p><i class="fas fa-map-marker-alt mr-2 text-indigo-500 w-4 text-center"></i>Base: Tigerhill Homestay, Jorebunglow (near Ghoom)</p>
+                <p><i class="fas fa-plane mr-2 text-indigo-500 w-4 text-center"></i>Flights: IndiGo (COK <-> IXB)</p>
+                <p><i class="fas fa-car mr-2 text-indigo-500 w-4 text-center"></i>Transport: Hired Car w/ Driver (5 Days)</p>
+                <p><i class="fas fa-ticket-alt mr-2 text-indigo-500 w-4 text-center"></i>Key Booking: Toy Train Joy Ride (May 17th, 1:25 PM)</p>
+                <p><i class="fas fa-wallet mr-2 text-indigo-500 w-4 text-center"></i>Est. Budget (Excl. Flights): ~₹ 39,700</p>
             </div>
         </section>
 
@@ -152,6 +144,21 @@
              </div>
         </section>
 
+        <section class="p-4 border-b border-gray-200">
+            <button class="accordion-button text-lg font-semibold text-indigo-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                <span><i class="fas fa-map-marked-alt mr-2"></i>Overall Trip Map</span>
+                <i class="fas fa-chevron-down arrow ml-1"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="map-placeholder">
+                    <p class="p-2"><strong>Map:</strong> Overview map showing Bagdogra Airport (IXB), route to Ghoom/Jorebunglow (Tigerhill Homestay), Darjeeling Town (Chowrasta/Mall Road area), and Tiger Hill.</p>
+                    <img src="https://imagizer.imageshack.com/img924/3840/Xqk45G.png" alt="Overall Trip Map" title="Overall Trip Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Overall map image failed to load.</p>';"/>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">This map should give a general idea of the key locations covered during the trip.</p>
+            </div>
+        </section>
+
+
         <main class="p-4 space-y-4">
 
             <div class="bg-gray-50 rounded-lg shadow p-4 border border-gray-200">
@@ -159,13 +166,25 @@
                 <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Arrival & Ghoom Exploration</h3>
 
                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-route mr-2"></i>Day 1 Route Map</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="map-placeholder">
+                             <p class="p-2"><strong>Map:</strong> Route from Bagdogra Airport (IXB) to Tigerhill Homestay (Jorebunglow/Ghoom). Highlight Ghoom Monastery, Ghoom Station, Batasia Loop in proximity to the homestay.</p>
+                             <img src="https://imagizer.imageshack.com/a/img922/2313/woMmgR.png" alt="Day 1 Route Map" title="Day 1 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 1 map image failed to load.</p>';"/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-plane-arrival mr-1"></i> ~11:05 AM - 3:00 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Arrival at Bagdogra (IXB) & Transfer to Ghoom</h4>
-                    <div class="graphic-placeholder bg-gradient-to-br from-green-200 via-blue-200 to-purple-300 text-gray-700">
-                        Scenic Drive Up the Hills
-                    </div>
+                    <img src="https://imagizer.imageshack.com/a/img922/6720/tE6Ccs.jpg" alt="Scenic Drive Up the Hills" title="Scenic Drive Up the Hills" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Scenic+Drive';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
                         <span>Guidelines</span>
                         <i class="fas fa-chevron-down arrow ml-1"></i>
@@ -201,12 +220,8 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-walking mr-1"></i> ~4:00 PM - 6:00 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Explore Ghoom Locally</h4>
-                     <div class="graphic-placeholder bg-gradient-to-tr from-yellow-200 via-red-200 to-pink-300 text-red-800">
-                         Ghoom Monastery Facade
-                     </div>
-                     <div class="graphic-placeholder bg-gradient-to-bl from-cyan-200 to-blue-300 text-blue-800">
-                         Batasia Loop Viewpoint
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img923/8973/JEpZAv.png" alt="Ghoom Monastery Facade" title="Ghoom Monastery Facade" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Ghoom+Monastery';this.alt='Image failed to load'"/>
+                     <img src="https://lh3.googleusercontent.com/geougc-cs/AB3l90D62IExyVe3xEnVET9cLpL0s3fX6luJFPffja8OoVUTEh6cCHmCj9V15QsSWd2zn4JXEhl5sDe1V3qth6ajhzBZn-ZJaqWuhUDC_sTYlw_QTz36gq-1a-len4cufYefVN8fG4e_=w449-h336-p" alt="Batasia Loop Viewpoint" title="Batasia Loop Viewpoint" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Batasia+Loop';this.alt='Image failed to load';" />
 
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
@@ -269,13 +284,24 @@
                 <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Darjeeling Town & Toy Train Fun!</h3>
 
                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-route mr-2"></i>Day 2 Route Map</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="map-placeholder">
+                             <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow to Darjeeling Town. Highlight HMI/Zoo, Darjeeling Railway Station, and Chowrasta (Mall Road).</p>
+                             <img src="https://imagizer.imageshack.com/img924/8614/MuLHG9.png" alt="Day 2 Route Map" title="Day 2 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 2 map image failed to load.</p>';"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-binoculars mr-1"></i> ~9:00 AM - 12:30 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">HMI & Zoo Visit</h4>
-                    <div class="graphic-placeholder bg-gradient-to-r from-red-200 via-orange-200 to-yellow-200 text-orange-800">
-                        Red Panda / Snow Leopard at Zoo
-                    </div>
+                    <img src="https://imagizer.imageshack.com/a/img923/1531/n2G8jI.jpg" alt="HMI or Zoo Scene" title="HMI or Zoo Scene" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=HMI+Zoo';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -332,9 +358,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-train mr-1"></i> ~1:15 PM - 3:30 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Toy Train Joy Ride (Pre-Booked 1:25 PM)</h4>
-                     <div class="graphic-placeholder bg-gradient-to-br from-gray-300 via-slate-300 to-stone-400 text-gray-800">
-                         Darjeeling Toy Train
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img922/9438/oyyFcv.jpg" alt="Darjeeling Toy Train" title="Darjeeling Toy Train" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Toy+Train';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -371,9 +395,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-bag mr-1"></i> ~3:30 PM onwards</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Explore Darjeeling Mall (Chowrasta)</h4>
-                     <div class="graphic-placeholder bg-gradient-to-tl from-purple-200 via-pink-200 to-rose-300 text-purple-800">
-                         Darjeeling Chowrasta Scene
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img924/4032/Ux2HE7.png" alt="Darjeeling Chowrasta Scene" title="Darjeeling Chowrasta Scene" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Chowrasta';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -425,14 +447,25 @@
                  <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 3: Sunday, May 18th</h2>
                  <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Sunrise Views & Spiritual Serenity</h3>
 
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-route mr-2"></i>Day 3 Route Map</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="map-placeholder">
+                             <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow to Tiger Hill (and back). Also show locations of Japanese Peace Pagoda, a representative Tea Estate (e.g., Happy Valley), and Tibetan Refugee Centre relative to Ghoom/Darjeeling.</p>
+                             <img src="https://imagizer.imageshack.com/a/img923/9623/tkowIk.png" alt="Day 3 Route Map" title="Day 3 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 3 map image failed to load.</p>';"/>
+                        </div>
+                    </div>
+                </div>
+
                  <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-mountain-sun mr-1"></i> ~3:45 AM - 7:00 AM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Tiger Hill Sunrise Attempt (Weather Dependent)</h4>
-                    <div class="graphic-placeholder bg-gradient-to-r from-orange-300 via-red-400 to-pink-500 text-white">
-                        Kanchenjunga Sunrise View
-                    </div>
+                    <img src="https://imagizer.imageshack.com/a/img924/6374/R8Y3PU.png" alt="Kanchenjunga Sunrise View" title="Kanchenjunga Sunrise View" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tiger+Hill+Sunrise';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -487,9 +520,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-peace mr-1"></i> Late Morning / Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Japanese Peace Pagoda & Temple Visit</h4>
-                     <div class="graphic-placeholder bg-gradient-to-b from-white via-gray-100 to-slate-200 text-gray-700 border border-gray-300">
-                         Japanese Peace Pagoda
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img922/4290/FJfJ9R.png" alt="Japanese Peace Pagoda" title="Japanese Peace Pagoda" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Peace+Pagoda';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -528,9 +559,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-leaf mr-1"></i> Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Tea Estate Visit & Tibetan Refugee Centre</h4>
-                     <div class="graphic-placeholder bg-gradient-to-r from-lime-200 via-green-300 to-emerald-400 text-green-900">
-                         Darjeeling Tea Gardens
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img924/2973/1Yzagr.png" alt="Darjeeling Tea Gardens" title="Darjeeling Tea Gardens" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tea+Gardens';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -586,13 +615,24 @@
                  <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Nature Excursion & Last Souvenirs</h3>
 
                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-route mr-2"></i>Day 4 Route Map</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="map-placeholder">
+                             <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow to Rock Garden/Ganga Maya Park (likely via Darjeeling Town). Also indicate general area of Darjeeling Town for shopping.</p>
+                             <img src="https://imagizer.imageshack.com/a/img923/5449/z2Y4PI.png" alt="Day 4 Route Map" title="Day 4 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 4 map image failed to load.</p>';"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-water mr-1"></i> Morning</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Rock Garden & Ganga Maya Park OR Missed Spots</h4>
-                    <div class="graphic-placeholder bg-gradient-to-br from-teal-200 via-cyan-300 to-sky-400 text-teal-800">
-                         Rock Garden Waterfall
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img924/252/0xhFY5.jpg" alt="Rock Garden Waterfall" title="Rock Garden Waterfall" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Rock+Garden';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -632,9 +672,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-cart mr-1"></i> Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Lunch & Last-Minute Shopping</h4>
-                     <div class="graphic-placeholder bg-gradient-to-tl from-amber-200 via-yellow-300 to-orange-300 text-amber-900">
-                         Darjeeling Souvenirs / Tea Shop
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img924/1469/q6BJxE.jpg" alt="Darjeeling Souvenirs / Tea Shop" title="Darjeeling Souvenirs / Tea Shop" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Darjeeling+Shopping';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -677,6 +715,19 @@
                  <h2 class="text-xl font-semibold text-indigo-700 mb-3 border-b pb-2">Day 5: Tuesday, May 20th</h2>
                  <h3 class="text-md font-medium text-gray-600 mb-4">Theme: Departure</h3>
 
+                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
+                    <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-2" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-route mr-2"></i>Day 5 Route Map</span>
+                        <i class="fas fa-chevron-down arrow ml-1"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="map-placeholder">
+                            <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow (Tigerhill Homestay) directly to Bagdogra Airport (IXB).</p>
+                            <img src="https://imagizer.imageshack.com/a/img922/1831/s7NyeX.png" alt="Day 5 Route Map" title="Day 5 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 5 map image failed to load.</p>';"/>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="activity-card bg-white rounded-lg p-3 mb-3 border border-gray-100 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-car-side mr-1"></i> ~5:00 AM - 6:00 AM</span>
@@ -701,9 +752,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-road mr-1"></i> ~6:00 AM - 9:40 AM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Travel to Bagdogra Airport (IXB)</h4>
-                     <div class="graphic-placeholder bg-gradient-to-r from-slate-300 via-gray-300 to-zinc-400 text-gray-800">
-                         Bagdogra Airport Exterior
-                     </div>
+                     <img src="https://imagizer.imageshack.com/a/img924/2/B7fIX2.png" alt="Bagdogra Airport Exterior" title="Bagdogra Airport Exterior" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Bagdogra+Airport';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
                         <span>Guidelines</span>
                         <i class="fas fa-chevron-down arrow ml-1"></i>
@@ -745,13 +794,14 @@
     <script>
         function toggleAccordion(button) {
             const content = button.nextElementSibling;
-            const arrow = button.querySelector('.arrow'); // Assumes Font Awesome icon element has class 'arrow'
+            const arrow = button.querySelector('.arrow');
             const isOpen = content.classList.contains('open');
 
-            // Close all other open accordions within the same activity card
-            const parentCard = button.closest('.activity-card');
-             if (parentCard) {
-                 parentCard.querySelectorAll('.accordion-content.open').forEach(openContent => {
+            // Find the closest common ancestor for accordions (activity-card, or section for the main map)
+            const parentScope = button.closest('.activity-card, section.p-4');
+
+             if (parentScope) {
+                 parentScope.querySelectorAll('.accordion-content.open').forEach(openContent => {
                      if (openContent !== content) {
                          openContent.classList.remove('open');
                          openContent.style.maxHeight = null;
@@ -767,7 +817,6 @@
                      }
                  });
              }
-
 
             content.classList.toggle('open');
             button.classList.toggle('open');
