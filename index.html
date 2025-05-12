@@ -9,10 +9,9 @@
     <style>
         /* Custom Styles */
         body {
-            background-color: #f0f4f8; /* Lighter blue-grey background */
-            font-family: 'Inter', sans-serif; /* Clean sans-serif font */
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
         }
-        /* Style for accordion content (hidden by default) */
         .accordion-content {
             display: none;
             overflow: hidden;
@@ -21,48 +20,101 @@
         }
         .accordion-content.open {
             display: block;
-            max-height: 1500px; /* Increased max-height */
+            max-height: 2000px; /* Adjusted for more content */
         }
-        /* Style for accordion button arrow */
         .accordion-button .arrow {
             transition: transform 0.3s ease;
         }
         .accordion-button.open .arrow {
             transform: rotate(180deg);
         }
-        /* Ensure images don't exceed container width and have some margin */
-        .activity-card img {
+        .activity-card img.single-image { /* Style for single main image */
              max-width: 100%;
-             height: auto;
-             margin-top: 0.5rem; /* Add some top margin */
-             margin-bottom: 0.5rem; /* Add some bottom margin */
+             height: 10rem; /* h-40 */
+             object-fit: cover;
+             margin-top: 0.5rem;
+             margin-bottom: 0.5rem;
         }
-        /* Calendar Icon Styling */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem; /* gap-2 */
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .image-gallery img {
+            height: 6rem; /* h-24, smaller for gallery items */
+            object-fit: cover;
+            flex-grow: 1; /* Allow images to grow and fill space */
+            border-radius: 0.5rem; /* rounded-lg */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
         .calendar-icon {
-            width: 1.5rem; /* Adjust size */
-            height: 1.5rem; /* Adjust size */
+            width: 1.5rem;
+            height: 1.5rem;
             margin-right: 0.25rem;
-            color: #4a5568; /* gray-700 */
+            color: #4a5568;
         }
         .calendar-icon-group span {
-             margin-right: 0.5rem; /* Space between icons */
-             display: inline-flex; /* Helps with alignment if needed */
+             margin-right: 0.5rem;
+             display: inline-flex;
              align-items: center;
         }
-        /* Styling for description and review text */
         .attraction-desc {
-            font-size: 0.8rem; /* Smaller font size */
-            color: #4a5568; /* gray-700 */
-            margin-left: 1rem; /* Indent description */
+            font-size: 0.8rem;
+            color: #4a5568;
+            margin-left: 1rem;
             margin-top: 0.1rem;
             margin-bottom: 0.4rem;
         }
         .attraction-review {
             font-size: 0.75rem;
             font-style: italic;
-            color: #718096; /* gray-500 */
+            color: #718096;
             margin-left: 1rem;
         }
+        .key-place-item {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease-in-out;
+        }
+        .key-place-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .key-place-icon {
+            color: #4f46e5;
+            margin-right: 0.75rem;
+        }
+        .map-placeholder {
+            display: flex;
+            flex-direction: column; /* Stack text and image */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            width: 100%;
+            min-height: 10rem; /* Ensure placeholder has some height */
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+            border: 1px dashed #cbd5e1;
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+         .map-placeholder img {
+            max-width: 90%; /* Ensure map image fits well */
+            max-height: 200px; /* Control map image height */
+            margin-top: 0.5rem;
+        }
+
 
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,12 +163,14 @@
                      <div class="flex-1 text-sm text-gray-600 calendar-icon-group flex flex-wrap gap-x-2 gap-y-1">
                          <span title="Breakfast"><i class="fas fa-mug-hot calendar-icon"></i></span>
                          <span title="Car Travel"><i class="fas fa-car-side calendar-icon"></i></span>
-                         <span title="HMI & Zoo"><i class="fas fa-paw calendar-icon"></i><i class="fas fa-mountain calendar-icon"></i></span>
+                         <span title="HMI & Zoo, Tenzing Rock"><i class="fas fa-paw calendar-icon"></i><i class="fas fa-mountain calendar-icon"></i><i class="fas fa-hand-rock calendar-icon"></i></span>
                          <span title="Lunch"><i class="fas fa-utensils calendar-icon"></i></span>
                          <span title="Toy Train"><i class="fas fa-train calendar-icon"></i></span>
                          <span title="Chowrasta/Mall Road"><i class="fas fa-walking calendar-icon"></i></span>
                          <span title="Shopping"><i class="fas fa-shopping-bag calendar-icon"></i></span>
-                         <span title="Momos"><i class="fas bowl-food calendar-icon"></i></span> <span title="Dinner"><i class="fas bowl-food calendar-icon"></i></span>
+                         <span title="Momos"><i class="fas fa-bread-slice calendar-icon"></i></span>
+                         <span title="Ropeway (Optional)"><i class="fas fa-question calendar-icon"></i></span>
+                         <span title="Dinner"><i class="fas fa-utensils calendar-icon"></i></span>
                          <span title="Hotel Stay"><i class="fas fa-bed calendar-icon"></i></span>
                      </div>
                  </div>
@@ -155,6 +209,64 @@
                      </div>
                  </div>
              </div>
+        </section>
+
+        <section class="p-4 border-b border-gray-200 bg-gray-50">
+            <h2 class="text-lg font-semibold text-indigo-800 mb-4">Key Places We're Visiting</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="key-place-item">
+                    <i class="fas fa-place-of-worship key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Ghoom Monastery</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-sync-alt key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Batasia Loop & War Memorial</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-mountain key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Himalayan Mountaineering Institute</span>
+                </div>
+                 <div class="key-place-item">
+                    <i class="fas fa-paw key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Padmaja Naidu Zoological Park</span>
+                </div>
+                 <div class="key-place-item">
+                    <i class="fas fa-hand-rock key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Tenzing Rock</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-train key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Darjeeling Himalayan Railway (Toy Train)</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-landmark key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Darjeeling Mall (Chowrasta)</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-mountain-sun key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Tiger Hill (Sunrise View)</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-peace key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Japanese Peace Pagoda</span>
+                </div>
+                 <div class="key-place-item">
+                    <i class="fas fa-leaf key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Tea Estate Visit</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-hands-helping key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Tibetan Refugee Self Help Centre</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-water key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Rock Garden & Ganga Maya Park</span>
+                </div>
+                <div class="key-place-item">
+                    <i class="fas fa-cable-car key-place-icon text-xl"></i>
+                    <span class="text-sm text-gray-700">Ropeway (Cable Car) - Optional</span>
+                </div>
+            </div>
         </section>
 
         <section class="p-4 border-b border-gray-200">
@@ -197,7 +309,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-plane-arrival mr-1"></i> ~11:05 AM - 3:00 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Arrival at Bagdogra (IXB) & Transfer to Ghoom</h4>
-                    <img src="https://imagizer.imageshack.com/a/img922/6720/tE6Ccs.jpg" alt="Scenic Drive Up the Hills" title="Scenic Drive Up the Hills" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Scenic+Drive';this.alt='Image failed to load'"/>
+                    <img src="https://imagizer.imageshack.com/a/img922/6720/tE6Ccs.jpg" alt="Scenic Drive Up the Hills" title="Scenic Drive Up the Hills" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Scenic+Drive';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
                         <span>Guidelines</span>
                         <i class="fas fa-chevron-down arrow ml-1"></i>
@@ -233,8 +345,10 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-walking mr-1"></i> ~4:00 PM - 6:00 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Explore Ghoom Locally</h4>
-                     <img src="https://imagizer.imageshack.com/a/img923/8973/JEpZAv.png" alt="Ghoom Monastery Facade" title="Ghoom Monastery Facade" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Ghoom+Monastery';this.alt='Image failed to load'"/>
-                     <img src="https://lh3.googleusercontent.com/geougc-cs/AB3l90D62IExyVe3xEnVET9cLpL0s3fX6luJFPffja8OoVUTEh6cCHmCj9V15QsSWd2zn4JXEhl5sDe1V3qth6ajhzBZn-ZJaqWuhUDC_sTYlw_QTz36gq-1a-len4cufYefVN8fG4e_=w449-h336-p" alt="Batasia Loop Viewpoint" title="Batasia Loop Viewpoint" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Batasia+Loop';this.alt='Image failed to load';" />
+                    <div class="image-gallery">
+                         <img src="https://imagizer.imageshack.com/a/img923/8973/JEpZAv.png" alt="Ghoom Monastery Facade" title="Ghoom Monastery Facade" onerror="this.onerror=null;this.src='https://placehold.co/300x200/EFEFEF/AAAAAA?text=Ghoom+Monastery';this.alt='Image failed to load'"/>
+                         <img src="https://lh3.googleusercontent.com/geougc-cs/AB3l90D62IExyVe3xEnVET9cLpL0s3fX6luJFPffja8OoVUTEh6cCHmCj9V15QsSWd2zn4JXEhl5sDe1V3qth6ajhzBZn-ZJaqWuhUDC_sTYlw_QTz36gq-1a-len4cufYefVN8fG4e_=w449-h336-p" alt="Batasia Loop Viewpoint" title="Batasia Loop Viewpoint" onerror="this.onerror=null;this.src='https://placehold.co/300x200/EFEFEF/AAAAAA?text=Batasia+Loop';this.alt='Image failed to load';" />
+                         </div>
 
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
@@ -303,7 +417,7 @@
                     </button>
                     <div class="accordion-content">
                         <div class="map-placeholder">
-                             <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow to Darjeeling Town. Highlight HMI/Zoo, Darjeeling Railway Station, and Chowrasta (Mall Road).</p>
+                             <p class="p-2"><strong>Map:</strong> Route from Ghoom/Jorebunglow to Darjeeling Town. Highlight HMI/Zoo, Tenzing Rock, Darjeeling Railway Station, and Chowrasta (Mall Road). Indicate Ropeway location if feasible.</p>
                              <img src="https://imagizer.imageshack.com/img924/8614/MuLHG9.png" alt="Day 2 Route Map" title="Day 2 Route Map" class="rounded-lg w-full h-auto object-contain" onerror="this.onerror=null;this.parentElement.innerHTML='<p class=\'text-red-500\'>Day 2 map image failed to load.</p>';"/>
                         </div>
                     </div>
@@ -313,8 +427,8 @@
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-binoculars mr-1"></i> ~9:00 AM - 12:30 PM</span>
                     </div>
-                    <h4 class="font-semibold text-gray-800 mb-2">HMI & Zoo Visit</h4>
-                    <img src="https://imagizer.imageshack.com/a/img923/1531/n2G8jI.jpg" alt="HMI or Zoo Scene" title="HMI or Zoo Scene" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=HMI+Zoo';this.alt='Image failed to load'"/>
+                    <h4 class="font-semibold text-gray-800 mb-2">HMI, Zoo & Tenzing Rock Visit</h4>
+                    <img src="https://imagizer.imageshack.com/a/img923/1531/n2G8jI.jpg" alt="HMI or Zoo Scene" title="HMI or Zoo Scene" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=HMI+Zoo';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -327,15 +441,19 @@
                                 <p class="attraction-desc">Specializes in high-altitude animals; known for successful Red Panda and Snow Leopard conservation programs.</p>
                                 <p class="attraction-review">Review: Very popular, considered one of the best zoos in India for its focus on Himalayan fauna and conservation.</p>
                             </li>
+                             <li><strong>Tenzing Rock:</strong>
+                                <p class="attraction-desc">A large natural rock formation named after Tenzing Norgay, used for rock climbing practice.</p>
+                                <p class="attraction-review">Review: Good for a quick photo stop; basic rock climbing available for a fee.</p>
+                            </li>
                          </ul>
                     </div>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
                         <ul>
-                            <li>Allow 3+ hours for both (same complex).</li>
+                            <li>Allow 3+ hours for HMI & Zoo (same complex). Tenzing Rock is nearby.</li>
                             <li>Wear comfortable shoes.</li>
-                            <li>Typically closed Thursdays (confirm).</li>
+                            <li>HMI/Zoo typically closed Thursdays (confirm).</li>
                         </ul>
                     </div>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
@@ -344,7 +462,7 @@
                         <ul>
                             <li>Learn mountaineering history.</li>
                             <li>Spot Red Pandas, Snow Leopards.</li>
-                            <li>Support conservation.</li>
+                            <li>Watch or try rock climbing at Tenzing Rock (optional).</li>
                         </ul>
                     </div>
                 </div>
@@ -371,7 +489,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-train mr-1"></i> ~1:15 PM - 3:30 PM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Toy Train Joy Ride (Pre-Booked 1:25 PM)</h4>
-                     <img src="https://imagizer.imageshack.com/a/img922/9438/oyyFcv.jpg" alt="Darjeeling Toy Train" title="Darjeeling Toy Train" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Toy+Train';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img922/9438/oyyFcv.jpg" alt="Darjeeling Toy Train" title="Darjeeling Toy Train" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Toy+Train';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -407,8 +525,8 @@
                      <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-bag mr-1"></i> ~3:30 PM onwards</span>
                     </div>
-                    <h4 class="font-semibold text-gray-800 mb-2">Explore Darjeeling Mall (Chowrasta)</h4>
-                     <img src="https://imagizer.imageshack.com/a/img924/4032/Ux2HE7.png" alt="Darjeeling Chowrasta Scene" title="Darjeeling Chowrasta Scene" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Chowrasta';this.alt='Image failed to load'"/>
+                    <h4 class="font-semibold text-gray-800 mb-2">Explore Darjeeling Mall (Chowrasta) & Optional Ropeway</h4>
+                     <img src="https://imagizer.imageshack.com/a/img924/4032/Ux2HE7.png" alt="Darjeeling Chowrasta Scene" title="Darjeeling Chowrasta Scene" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Chowrasta';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -417,14 +535,18 @@
                                 <p class="attraction-desc">The main public square and promenade, lined with shops, cafes, and benches. The social hub of Darjeeling.</p>
                                 <p class="attraction-review">Review: Essential Darjeeling experience; great for people-watching, atmosphere, and evening strolls.</p>
                             </li>
+                            <li><strong>Ropeway (Cable Car) - Optional:</strong>
+                                <p class="attraction-desc">Offers scenic views of tea gardens and valleys. Located a bit away from the Mall, requires separate travel.</p>
+                                <p class="attraction-review">Review: Mixed; views can be good, but queues and time commitment are factors.</p>
+                            </li>
                          </ul>
                     </div>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
                         <ul>
-                            <li>Ideal for walking (vehicle restricted).</li>
-                            <li>Can be busy.</li>
+                            <li>Chowrasta is ideal for walking (vehicle restricted). Can be busy.</li>
+                            <li>Ropeway: Check timings, expect queues. Takes 2-3 hours including travel.</li>
                         </ul>
                     </div>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
@@ -435,6 +557,7 @@
                             <li>**Try Momos!**</li>
                             <li>Enjoy tea/coffee.</li>
                             <li>People-watch.</li>
+                            <li>Consider Ropeway if time and interest permit.</li>
                         </ul>
                     </div>
                 </div>
@@ -478,7 +601,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-mountain-sun mr-1"></i> ~3:45 AM - 7:00 AM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Tiger Hill Sunrise Attempt (Weather Dependent)</h4>
-                    <img src="https://imagizer.imageshack.com/a/img924/6374/R8Y3PU.png" alt="Kanchenjunga Sunrise View" title="Kanchenjunga Sunrise View" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tiger+Hill+Sunrise';this.alt='Image failed to load'"/>
+                    <img src="https://imagizer.imageshack.com/a/img924/6374/R8Y3PU.png" alt="Kanchenjunga Sunrise View" title="Kanchenjunga Sunrise View" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tiger+Hill+Sunrise';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -533,7 +656,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-peace mr-1"></i> Late Morning / Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Japanese Peace Pagoda & Temple Visit</h4>
-                     <img src="https://imagizer.imageshack.com/a/img922/4290/FJfJ9R.png" alt="Japanese Peace Pagoda" title="Japanese Peace Pagoda" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Peace+Pagoda';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img922/4290/FJfJ9R.png" alt="Japanese Peace Pagoda" title="Japanese Peace Pagoda" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Peace+Pagoda';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -572,7 +695,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-leaf mr-1"></i> Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Tea Estate Visit & Tibetan Refugee Centre</h4>
-                     <img src="https://imagizer.imageshack.com/a/img924/2973/1Yzagr.png" alt="Darjeeling Tea Gardens" title="Darjeeling Tea Gardens" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tea+Gardens';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img924/2973/1Yzagr.png" alt="Darjeeling Tea Gardens" title="Darjeeling Tea Gardens" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Tea+Gardens';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -645,7 +768,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-water mr-1"></i> Morning</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Rock Garden & Ganga Maya Park OR Missed Spots</h4>
-                     <img src="https://imagizer.imageshack.com/a/img924/252/0xhFY5.jpg" alt="Rock Garden Waterfall" title="Rock Garden Waterfall" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Rock+Garden';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img924/252/0xhFY5.jpg" alt="Rock Garden Waterfall" title="Rock Garden Waterfall" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Rock+Garden';this.alt='Image failed to load'"/>
                     <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Attractions</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -685,7 +808,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-shopping-cart mr-1"></i> Afternoon</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Lunch & Last-Minute Shopping</h4>
-                     <img src="https://imagizer.imageshack.com/a/img924/1469/q6BJxE.jpg" alt="Darjeeling Souvenirs / Tea Shop" title="Darjeeling Souvenirs / Tea Shop" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Darjeeling+Shopping';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img924/1469/q6BJxE.jpg" alt="Darjeeling Souvenirs / Tea Shop" title="Darjeeling Souvenirs / Tea Shop" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Darjeeling+Shopping';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center mb-1" onclick="toggleAccordion(this)">
                         <span>Guidelines</span><i class="fas fa-chevron-down arrow ml-1"></i></button>
                     <div class="accordion-content text-sm text-gray-600">
@@ -765,7 +888,7 @@
                         <span class="text-sm font-medium text-gray-500"><i class="fas fa-road mr-1"></i> ~6:00 AM - 9:40 AM</span>
                     </div>
                     <h4 class="font-semibold text-gray-800 mb-2">Travel to Bagdogra Airport (IXB)</h4>
-                     <img src="https://imagizer.imageshack.com/a/img924/2/B7fIX2.png" alt="Bagdogra Airport Exterior" title="Bagdogra Airport Exterior" class="rounded-lg w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Bagdogra+Airport';this.alt='Image failed to load'"/>
+                     <img src="https://imagizer.imageshack.com/a/img924/2/B7fIX2.png" alt="Bagdogra Airport Exterior" title="Bagdogra Airport Exterior" class="rounded-lg single-image" onerror="this.onerror=null;this.src='https://placehold.co/600x200/EFEFEF/AAAAAA?text=Bagdogra+Airport';this.alt='Image failed to load'"/>
                      <button class="accordion-button text-sm text-blue-600 hover:text-blue-800 w-full text-left flex justify-between items-center" onclick="toggleAccordion(this)">
                         <span>Guidelines</span>
                         <i class="fas fa-chevron-down arrow ml-1"></i>
